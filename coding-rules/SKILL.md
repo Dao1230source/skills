@@ -303,6 +303,32 @@ public class User {
 4. **使用 `<ul>/<li>` 列表**：列举多项内容时使用列表标签
 5. **注释更新**：代码修改时同步更新注释
 
+#### 尖括号类型注释规范（强制要求）
+
+**当java注释中出现泛型类型（如 `List<V>`、`Map<K,V>`、`List<List<V>>`）时，必须使用 `{@literal }` 包裹：**
+
+```java
+// 错误 ❌ - 尖括号未包裹，HTML转义问题
+/**
+ * 批量key返回 Map<K, List<V>>类型
+ */
+
+// 正确 ✅ - 使用 {@literal } 包裹
+/**
+ * 批量key返回 {@literal Map<K, List<V>>}类型
+ */
+```
+
+**常见类型示例**：
+
+| 类型 | 注释写法 |
+|------|---------|
+| `List<V>` | `{@literal List<V>}` |
+| `Map<K,V>` | `{@literal Map<K,V>}` |
+| `Map<K, List<V>>` | `{@literal Map<K, List<V>>}` |
+| `Map<K, Map<KK, V>>` | `{@literal Map<K, Map<KK, V>>}` |
+| `List<List<V>>` | `{@literal List<List<V>>}` |
+
 ```java
 // 错误 ❌ - 尾行注释
 private String name; // 用户姓名
